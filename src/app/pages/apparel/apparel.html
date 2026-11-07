@@ -1,0 +1,54 @@
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div>
+      <span class="eyebrow accent">Corporate Apparel</span>
+      <h1 class="display">Uniform<br />Essentials</h1>
+    </div>
+    <div class="intro-side">
+      <p>Performance polos and t-shirts engineered for schools, institutions and corporate teams — from lightweight 180 GSM pique to reinforced 220 GSM performance knit. Every style can be customized in colour, logo, embroidery and trims.</p>
+      <nav class="chips" aria-label="Styles">
+        @for (g of garments; track g.slug) {
+          <a routerLink="/apparel" [fragment]="g.slug">{{ g.name }}</a>
+        }
+      </nav>
+    </div>
+  </div>
+</section>
+
+@for (g of garments; track g.slug; let i = $index; let odd = $odd) {
+  <section class="spread" [class.reverse]="odd" [id]="g.slug">
+    <!-- Text page -->
+    <article class="text-page">
+      <div class="top">
+        <span class="page-no">{{ pageNo(i, 0) }}</span>
+        <pr-logo [size]="22" />
+      </div>
+      <div class="body">
+        @for (p of g.paragraphs; track $index) { <p>{{ p }}</p> }
+      </div>
+      <h2 class="display title">{{ g.name }}</h2>
+    </article>
+
+    <!-- Photo page -->
+    <div class="photo-page">
+      <span class="page-no photo-no" aria-hidden="true">{{ pageNo(i, 1) }}</span>
+      <img [src]="g.image" width="1046" height="1482" [alt]="g.name + ' t-shirts in multiple colourways'" loading="lazy" />
+      <dl class="spec">
+        <div><dt>Fabric</dt><dd>{{ g.fabric }}</dd></div>
+        <div><dt>Features</dt><dd>{{ g.features.join('  |  ') }}</dd></div>
+        <div><dt>Fit</dt><dd>{{ g.fit }}</dd></div>
+        <div><dt>Ideal For</dt><dd>{{ g.idealFor.join('  |  ') }}</dd></div>
+      </dl>
+    </div>
+  </section>
+}
+
+<section class="cta">
+  <div class="wrap cta-inner">
+    <h2 class="display">Need it in your colours?</h2>
+    <div class="cta-actions">
+      <a routerLink="/customization" class="btn btn--dark">See Colourways</a>
+      <a routerLink="/contact" class="btn">Request a Quote</a>
+    </div>
+  </div>
+</section>
