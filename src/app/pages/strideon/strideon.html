@@ -1,0 +1,87 @@
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">A ProdReach brand</span>
+      <h1><img src="images/brand/strideon-logo.webp" width="375" height="107" alt="StrideOn" class="logo" /></h1>
+      <p class="lead">School &amp; corporate footwear, engineered for every step.</p>
+      <p>{{ info.intro }}</p>
+      <ul class="hl">
+        @for (h of info.highlights; track h) { <li>{{ h }}</li> }
+      </ul>
+    </div>
+    <nav class="model-nav" aria-label="Models">
+      @for (s of shoes; track s.slug) {
+        <a routerLink="/strideon" [fragment]="s.slug" class="mn">
+          <img [src]="s.variants[0].image" alt="" loading="lazy" />
+          <span class="mn-name" [class.prime]="s.titleTone === 'prime'">{{ s.name }}</span>
+        </a>
+      }
+    </nav>
+  </div>
+</section>
+
+@for (s of shoes; track s.slug; let i = $index) {
+  <section class="model" [id]="s.slug" [attr.aria-labelledby]="s.slug + '-title'">
+    <!-- Variant column -->
+    <div class="variants">
+      <div class="v-list">
+        @for (v of s.variants; track v.image) {
+          <figure class="v">
+            <img [src]="v.image" [alt]="s.name + ' — ' + v.lines[0][1]" loading="lazy" />
+            <figcaption>
+              @for (l of v.lines; track l[0]) { <span><b>{{ l[0] }} :</b> {{ l[1] }}</span> }
+            </figcaption>
+          </figure>
+        }
+      </div>
+      <div class="v-title">
+        <h2 class="display name" [class.prime]="s.titleTone === 'prime'" [id]="s.slug + '-title'">{{ s.name }}</h2>
+        @if (s.tagline) { <p class="tagline">{{ s.tagline }}</p> }
+      </div>
+    </div>
+
+    <!-- Dark spec panel -->
+    <div class="panel">
+      <div class="panel-top">
+        <span class="page-no" aria-hidden="true">{{ 14 + i }}</span>
+        <img src="images/brand/strideon-logo.webp" width="375" height="107" alt="" class="panel-logo" loading="lazy" />
+      </div>
+      <img [src]="s.hero" [alt]="'StrideOn ' + s.name + ' lifestyle photo'" class="hero-img" loading="lazy" />
+
+      <h3 class="kicker">Specification</h3>
+      <dl class="specs">
+        @for (r of s.specs; track r[0]) {
+          <div><dt>{{ r[0] }}</dt><dd>{{ r[1] }}</dd></div>
+        }
+      </dl>
+
+      <h3 class="kicker">Material Description</h3>
+      <p class="material">{{ s.material }}</p>
+
+      @if (s.features.length) {
+        <ul class="features" [style.--cols]="s.features.length">
+          @for (f of s.features; track f.title) {
+            <li>
+              <pr-icon [name]="f.icon" [size]="40" [stroke]="1.3" />
+              <strong>{{ f.title }}</strong>
+              <span>{{ f.text }}</span>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </section>
+}
+
+<section class="cta">
+  <div class="wrap cta-inner">
+    <div>
+      <span class="eyebrow">Bulk orders for schools &amp; corporates</span>
+      <h2 class="display">Fit your whole team.</h2>
+    </div>
+    <div class="cta-actions">
+      <a routerLink="/customization" class="btn btn--ghost">Match Your Colours</a>
+      <a routerLink="/contact" class="btn">Request Samples</a>
+    </div>
+  </div>
+</section>

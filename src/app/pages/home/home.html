@@ -1,0 +1,142 @@
+<!-- COVER — catalogue page 1 -->
+<section class="cover">
+  <div class="wrap cover-top">
+    <div class="cover-copy">
+      <span class="eyebrow">Corporate Apparel Collection</span>
+      <h1 class="display cover-title">ProdReach</h1>
+      <p class="cover-sub">
+        Corporate Uniforms<br />
+        Built for <span class="accent">Performance.</span><br />
+        Designed for <span class="accent">Professionals.</span>
+      </p>
+      <div class="cta">
+        <a routerLink="/contact" class="btn">Request a Quote</a>
+        <a routerLink="/strideon" class="btn btn--ghost">Explore StrideOn</a>
+      </div>
+    </div>
+    <div class="edition" aria-hidden="true">
+      <span class="year">2026</span>
+      <span class="ed">Corporate<br />Edition</span>
+    </div>
+  </div>
+  <div class="cover-photo">
+    <img src="images/brand/cover-products.webp" width="1067" height="667" alt="ProdReach corporate polo, track pants, StrideOn shoes and backpack" fetchpriority="high" />
+  </div>
+</section>
+
+<!-- PERFORMANCE MEETS PROFESSIONALISM — cover info panel -->
+<section class="panel">
+  <div class="wrap panel-grid">
+    <div>
+      <h2 class="panel-title">Performance<br />Meets<br /><span class="accent">Professionalism</span></h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="panel-text">
+        From premium polos to performance footwear, ProdReach offers complete corporate apparel solutions tailored for
+        organizations that value quality, consistency and brand identity.
+      </p>
+    </div>
+    <ul class="cats">
+      @for (c of categories; track c.label) {
+        <li>
+          <a [routerLink]="c.link">
+            <pr-icon [name]="c.icon" [size]="30" class="cat-icon" />
+            <span>{{ c.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+  <div class="wrap edition-line">
+    <span class="eyebrow">Corporate Apparel Catalogue</span>
+    <span class="eyebrow accent">2026 Edition</span>
+  </div>
+</section>
+
+<!-- ABOUT — catalogue pages 2–3 -->
+<section class="about">
+  <div class="about-photo">
+    <img src="images/brand/showroom.webp" width="1055" height="1491" alt="ProdReach showroom with uniform display tables" loading="lazy" />
+  </div>
+  <div class="about-copy">
+    <span class="page-no" aria-hidden="true">03</span>
+    <p class="lead">{{ about.lead }}</p>
+    <p>{{ about.paragraphs[0] }}</p>
+    <p>{{ about.promise }}</p>
+    <a routerLink="/about" class="more">Read our story <span aria-hidden="true">→</span></a>
+    <h2 class="display about-title">About Us</h2>
+  </div>
+</section>
+
+<!-- PRODUCT LINES -->
+<section class="lines">
+  <div class="wrap">
+    <header class="lines-head">
+      <span class="eyebrow accent">What we supply</span>
+      <h2 class="display">Our Products</h2>
+      <p>Three product lines, one accountable partner — sourced from manufacturers who already power some of India's biggest brands.</p>
+    </header>
+    <div class="line-grid">
+      @for (l of lines; track l.slug; let i = $index) {
+        <a class="line" [routerLink]="'/' + l.slug">
+          <span class="line-no" aria-hidden="true">0{{ i + 1 }}</span>
+          <div class="line-img"><img [src]="l.image" [alt]="l.name" loading="lazy" /></div>
+          <div class="line-body">
+            <span class="eyebrow">{{ l.count }}</span>
+            <h3 class="display line-title">{{ l.title }}</h3>
+            <p>{{ l.blurb }}</p>
+            <span class="more">View range <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- STRIDEON FEATURE -->
+<section class="stride">
+  <div class="wrap stride-grid">
+    <div class="stride-copy">
+      <img src="images/brand/strideon-logo.webp" width="375" height="107" alt="StrideOn" class="stride-logo" loading="lazy" />
+      <p class="stride-lead">Footwear built exclusively for schools and corporate businesses.</p>
+      <p>Four engineered platforms — Bolt, Aero, Prime and Core — with non-marking soles, junior and senior size ranges, and colours matched to your uniform standard.</p>
+      <div class="models">
+        @for (m of ['Bolt', 'Aero', 'Prime', 'Core']; track m) {
+          <a [routerLink]="'/strideon'" [fragment]="m.toLowerCase()" class="model">{{ m }}</a>
+        }
+      </div>
+    </div>
+    <div class="stride-img">
+      <img src="images/strideon/core-hero.webp" width="770" height="562" alt="StrideOn Core school shoes on a running track" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION — catalogue page 19 -->
+<section class="collection">
+  <div class="collection-img">
+    <img src="images/brand/collection.webp" width="1055" height="1044" alt="Corporate uniform collection displayed on mannequins in a showroom" loading="lazy" />
+  </div>
+  <div class="collection-copy">
+    <span class="eyebrow accent">Corporate</span>
+    <h2 class="collection-title">Uniform<br />Collection</h2>
+    <p class="collection-sub">Professional. Smart. Unified.</p>
+    <p>Premium quality uniforms designed for performance, comfort and a professional corporate image — customized in seven signature colourways with your logo, embroidery and trims.</p>
+    <a routerLink="/customization" class="btn">Customize Your Uniform</a>
+  </div>
+</section>
+
+<pr-process />
+
+<!-- CTA — back cover -->
+<section class="cta-band">
+  <div class="wrap cta-grid">
+    <h2 class="display">Every demand<br />finds its <span class="sky">perfect match.</span></h2>
+    <div class="cta-side">
+      <p>Tell us what your organisation needs — quantities, colours, sizes and timelines — and we'll match it to the right manufacturer.</p>
+      <div class="cta">
+        <a routerLink="/contact" class="btn">Start an Enquiry</a>
+        <a [href]="company.whatsapp" target="_blank" rel="noopener" class="btn btn--ghost">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
